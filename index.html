@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verificación de seguridad</title>
+<style>
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background: #020b05;
+        color: #72ff8a;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow: hidden;
+    }
+
+    .matrix {
+        position: fixed;
+        inset: 0;
+        opacity: .16;
+        overflow: hidden;
+        z-index: 0;
+        font-size: clamp(38px, 6vw, 82px);
+        line-height: .88;
+        letter-spacing: .04em;
+        word-spacing: .12em;
+        color: #58ff78;
+        transform: rotate(-2deg) scale(1.08);
+        user-select: none;
+    }
+
+    .matrix span {
+        display: block;
+        white-space: nowrap;
+        animation: flicker 3s infinite alternate;
+    }
+
+    .matrix span:nth-child(2n) { opacity: .45; }
+    .matrix span:nth-child(3n) { opacity: .75; }
+    .matrix span:nth-child(4n) { opacity: .35; }
+
+    @keyframes flicker {
+        from { transform: translateX(-8px); }
+        to   { transform: translateX(8px); }
+    }
+
+    .scan {
+        position: relative;
+        z-index: 2;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+    }
+
+    .card {
+        width: min(680px, 94vw);
+        background: rgba(1, 13, 6, .94);
+        border: 1px solid rgba(104,255,129,.45);
+        box-shadow: 0 0 35px rgba(49,255,91,.14);
+        padding: clamp(28px, 6vw, 52px);
+        text-align: center;
+    }
+
+    .top {
+        font-size: 12px;
+        letter-spacing: .22em;
+        text-transform: uppercase;
+        opacity: .7;
+        margin-bottom: 18px;
+    }
+
+    h1 {
+        margin: 0 0 14px;
+        font-size: clamp(28px, 6vw, 52px);
+        letter-spacing: .05em;
+    }
+
+    .line {
+        height: 1px;
+        background: #55ff78;
+        opacity: .45;
+        margin: 24px 0;
+    }
+
+    #status {
+        min-height: 28px;
+        font-family: Consolas, monospace;
+        font-size: 16px;
+    }
+
+    .warning {
+        display: none;
+        margin-top: 28px;
+        padding: 24px;
+        border: 1px solid #55ff78;
+        background: rgba(25, 90, 38, .18);
+    }
+
+    .warning h2 {
+        margin: 0 0 12px;
+        font-size: clamp(24px, 5vw, 38px);
+    }
+
+    .warning p {
+        color: #eaffed;
+        line-height: 1.55;
+        margin: 8px 0;
+    }
+
+    .warning ul {
+        text-align: left;
+        color: #d6ffdc;
+        line-height: 1.7;
+        margin: 18px auto;
+        max-width: 520px;
+    }
+
+    .tag {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 7px 12px;
+        border: 1px solid rgba(114,255,138,.5);
+        font-size: 11px;
+        letter-spacing: .15em;
+        text-transform: uppercase;
+    }
+
+    .footer {
+        margin-top: 24px;
+        font-size: 11px;
+        opacity: .55;
+    }
+
+    .cursor::after {
+        content: "▋";
+        animation: blink .8s infinite;
+    }
+
+    @keyframes blink {
+        50% { opacity: 0; }
+    }
+</style>
+</head>
+
+<body>
+<div class="matrix" aria-hidden="true">
+    <span>1 2 3 4 5 6 7 8 9 0</span>
+    <span>1 2 3 4 5 6 7 8 9 0</span>
+    <span>1 2 3 4 5 6 7 8 9 0</span>
+    <span>1 2 3 4 5 6 7 8 9 0</span>
+    <span>1 2 3 4 5 6 7 8 9 0</span>
+    <span>1 2 3 4 5 6 7 8 9 0</span>
+    <span>1 2 3 4 5 6 7 8 9 0</span>
+    <span>1 2 3 4 5 6 7 8 9 0</span>
+    <span>1 2 3 4 5 6 7 8 9 0</span>
+    <span>1 2 3 4 5 6 7 8 9 0</span>
+</div>
+
+<main class="scan">
+    <section class="card">
+        <div class="top">Security verification // Workshop</div>
+        <h1>VERIFICANDO...</h1>
+        <div class="line"></div>
+        <div id="status" class="cursor">Analizando conexión segura</div>
+
+        <div id="warning" class="warning">
+            <div class="tag">Simulación educativa</div>
+            <h2>⚠️ ¿HUBIERAS CONTINUADO?</h2>
+            <p>
+                Acabas de entrar a una página creada para este taller.
+                No se recopiló ninguna información personal.
+            </p>
+            <p><strong>El objetivo era demostrar que un QR no siempre revela su destino.</strong></p>
+
+            <ul>
+                <li>Verifica quién generó y compartió el QR.</li>
+                <li>Revisa la dirección web antes de ingresar información.</li>
+                <li>Desconfía de páginas que soliciten credenciales, OTP o datos sensibles.</li>
+                <li>Si algo no corresponde al proceso habitual, detente y consulta.</li>
+            </ul>
+
+            <p><strong>El objetivo no es saber quién cayó.</strong><br>
+            Es aprender a detectar la señal antes de continuar.</p>
+        </div>
+
+        <div class="footer">
+            Taller interno de concientización · Simulación sin captura de datos
+        </div>
+    </section>
+</main>
+
+<script>
+const messages = [
+    "Analizando conexión segura",
+    "Verificando origen del enlace",
+    "Validando destino",
+    "Comprobación final"
+];
+
+const status = document.getElementById("status");
+const warning = document.getElementById("warning");
+
+let i = 0;
+
+function nextMessage() {
+    if (i < messages.length) {
+        status.textContent = messages[i] + " ...";
+        i++;
+        setTimeout(nextMessage, 850);
+    } else {
+        status.classList.remove("cursor");
+        status.textContent = "Verificación completada.";
+        setTimeout(() => {
+            warning.style.display = "block";
+        }, 500);
+    }
+}
+
+setTimeout(nextMessage, 500);
+</script>
+</body>
+</html>
